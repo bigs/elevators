@@ -142,4 +142,4 @@ instance ElevatorControlSystem ElevatorBank [Elevator] where
     where eid = e ^. elevatorID
 
   -- call the step function
-  step es = M.map stepElevator es 
+  step es = M.map stepElevator es
