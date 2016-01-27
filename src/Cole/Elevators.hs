@@ -113,7 +113,11 @@ stepElevator e@(Elevator eid dir fl dests rDests) = Elevator eid dir' fl' dests'
           [] -> case rDests of
             [] -> (Stationary, dests, rDests)
             _  -> (idir, rDests, [])
-          (x:[]) -> if x == fl' then (idir, rDests, []) else (dir, dests, rDests)
+          (x:[]) -> if x == fl'
+                    then case rDests of
+            [] -> (Stationary, [], [])
+            _  -> (idir, rDests, [])
+                    else (dir, dests, rDests)
           (x:xs) -> if x == fl' then (dir, xs, rDests) else (dir, dests, rDests)
 
 -- type class instance for our elevator bank
